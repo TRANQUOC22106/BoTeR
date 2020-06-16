@@ -32,6 +32,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.DataViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull final MyAdapter.DataViewHolder holder, int position) {
 
+        //imageButtonを押したら、体温平均に移動します。
         holder.imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
