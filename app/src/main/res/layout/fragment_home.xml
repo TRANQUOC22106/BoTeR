@@ -48,7 +48,7 @@
         android:layout_below="@+id/rl_searchlayout"
         android:layout_alignParentStart="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="178dp">
+        android:layout_marginTop="219dp">
 
     </androidx.recyclerview.widget.RecyclerView>
 

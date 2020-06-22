@@ -1,33 +1,26 @@
 package com.example.boter.Adapter;
 
-import java.util.Date;
-
 public class Person {
     private String name;
-    private int number;
-    private String nhietDo;
+    private int temp;
+    private int userId;
 
-    public Person(String name,String nhietDo, int number){
+    public Person(){}
+    public Person(String name, int temp, int userId){
         this.name = name;
-        this.number = number;
-        this.nhietDo = nhietDo;
+        this.temp = temp;
+        this.userId = userId;
     }
-    public String getName(){
+
+    public String getName() {
         return name;
     }
-    public void setName(String name){
-        this.name = name;
+
+    public int getTemp() {
+        return temp;
     }
-    public int getNumber(){
-        return number;
-    }
-    public void setNumber(int Number){
-        this.number = number;
-    }
-    public String getNhietDo(){
-        return nhietDo;
-    }
-    public void setNhietDo(String nhietDo){
-        this.nhietDo = nhietDo;
+
+    public int getUserId() {
+        return userId;
     }
 }

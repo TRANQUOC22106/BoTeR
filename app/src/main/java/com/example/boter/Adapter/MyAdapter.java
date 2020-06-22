@@ -1,70 +1,53 @@
 package com.example.boter.Adapter;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.boter.R;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-import java.util.List;
-
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.DataViewHolder> {
-
-    private List<Person> people;
-
-    public MyAdapter(List<Person> people) {
-        this.people = people;
+public class MyAdapter extends FirestoreRecyclerAdapter<Person, MyAdapter.PersonHolder> {
+    /**
+     * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
+     * FirestoreRecyclerOptions} for configuration options.
+     *
+     * @param options
+     */
+    public MyAdapter(@NonNull FirestoreRecyclerOptions<Person> options) {
+        super(options);
     }
-    //img_thermometer.png
+
+    @Override
+    protected void onBindViewHolder(@NonNull PersonHolder holder, int position, @NonNull Person model) {
+        holder.name.setText(model.getName());
+        holder.userId.setText(String.valueOf(model.getUserId()));
+        holder.temp.setText(String.valueOf(model.getTemp()));
+    }
+
     @NonNull
     @Override
-    public MyAdapter.DataViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_bodytempurate, parent, false);
-        return new DataViewHolder(itemView);
+    public PersonHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_bodytempurate,
+                parent, false);
+        return new PersonHolder(v);
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull final MyAdapter.DataViewHolder holder, int position) {
-
-        //imageButtonを押したら、体温平均に移動します。
-        holder.imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intentDetail = new Intent(holder.itemView.getContext(), DetailActivity.class);
-                holder.itemView.getContext().startActivity(intentDetail);
-            }
-        });
-        String name = people.get(position).getName();
-        holder.tvName.setText(name);
-        String nhietDo = people.get(position).getNhietDo();
-        holder.nhietDo.setText(nhietDo);
-    }
-
-    @Override
-    public int getItemCount() {
-        return people == null ? 0 : people.size();
-    }
-
-    public static class DataViewHolder extends RecyclerView.ViewHolder{
-
-//        TextView date;
-//        TextView name;
-        TextView nhietDo;
-        ImageButton imageButton;
-            TextView tvName;
-        public DataViewHolder(@NonNull View itemView) {
+    public class PersonHolder extends RecyclerView.ViewHolder {
+        TextView name;
+        TextView temp;
+        TextView userId;
+        public PersonHolder(@NonNull View itemView) {
             super(itemView);
-//            date = (TextView) itemView.findViewById(R.id.date);
-            nhietDo = (TextView) itemView.findViewById(R.id.number);
-            imageButton = (ImageButton) itemView.findViewById(R.id.imageButton3);
-            tvName = (TextView) itemView.findViewById(R.id.name);
 
+            name = itemView.findViewById(R.id.name);
+            temp = itemView.findViewById(R.id.temp);
+            userId = itemView.findViewById(R.id.textViewUserId);
         }
     }
 }

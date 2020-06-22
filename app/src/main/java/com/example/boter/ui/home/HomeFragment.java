@@ -16,15 +16,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.boter.Adapter.MyAdapter;
 import com.example.boter.Adapter.Person;
 import com.example.boter.R;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 public class HomeFragment extends Fragment{
 
     private HomeViewModel homeViewModel;
-
     private RecyclerView recyclerView;
+
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference listUser = db.collection("UserList");
+    private MyAdapter adapter;
+
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -33,16 +38,10 @@ public class HomeFragment extends Fragment{
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        List<Person> people = new ArrayList<>();
-        people.add(new Person("鵜飼", "36", 1));
-        people.add(new Person("クォック","37",2));
-        people.add(new Person("ジョン","35",3));
         recyclerView =(RecyclerView) root.findViewById(R.id.recycler_view);
 //        サイズを設定
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-        recyclerView.setAdapter(new MyAdapter(people));
 
         homeViewModel.getText().observe(this, new Observer<String>() {
             @Override
@@ -50,7 +49,19 @@ public class HomeFragment extends Fragment{
 
             }
         });
+        showAllHotelList();
         return root;
+    }
+
+    private void showAllHotelList() {
+        Query queryShowAll = listUser.orderBy("userid", Query.Direction.DESCENDING);
+        FirestoreRecyclerOptions<Person> options = new FirestoreRecyclerOptions.Builder<Person>()
+                .setQuery(queryShowAll, Person.class)
+                .build();
+        adapter = new MyAdapter(options);
+        recyclerView.setAdapter(adapter);
+
+        adapter.startListening();
     }
 
 }
