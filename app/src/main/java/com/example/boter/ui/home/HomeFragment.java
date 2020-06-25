@@ -58,10 +58,23 @@ public class HomeFragment extends Fragment{
         FirestoreRecyclerOptions<Person> options = new FirestoreRecyclerOptions.Builder<Person>()
                 .setQuery(queryShowAll, Person.class)
                 .build();
+
         adapter = new MyAdapter(options);
+        recyclerView.removeAllViews();
         recyclerView.setAdapter(adapter);
 
-        adapter.startListening();
+
     }
 
+    @Override
+    public void onStart() {
+        adapter.startListening();
+        super.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        adapter.stopListening();
+        super.onStop();
+    }
 }
