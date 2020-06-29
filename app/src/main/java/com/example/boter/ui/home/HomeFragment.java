@@ -49,18 +49,19 @@ public class HomeFragment extends Fragment{
 
             }
         });
-        showAllHotelList();
+        showAllUserList();
         return root;
     }
 
-    private void showAllHotelList() {
-        Query queryShowAll = listUser.orderBy("userid", Query.Direction.DESCENDING);
+    private void showAllUserList() {
+        Query queryShowAll = listUser.orderBy("userId", Query.Direction.DESCENDING);
+
         FirestoreRecyclerOptions<Person> options = new FirestoreRecyclerOptions.Builder<Person>()
                 .setQuery(queryShowAll, Person.class)
                 .build();
 
         adapter = new MyAdapter(options);
-        recyclerView.removeAllViews();
+       // recyclerView.removeAllViews();
         recyclerView.setAdapter(adapter);
 
 

@@ -44,7 +44,7 @@
 
     <LinearLayout
         android:layout_width="320dp"
-        android:layout_height="210dp"
+        android:layout_height="261dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="149dp"
@@ -61,9 +61,27 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:src="@drawable/ic_name" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Name"
+                android:id="@+id/editTextNameInput"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_style2"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:src="@drawable/ic_email" />
 
             <EditText
+                android:id="@+id/editTextMailInput"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="Mail" />
@@ -80,6 +98,7 @@
                 android:src="@drawable/ic_lock" />
 
             <EditText
+                android:id="@+id/editTextPasswordInput"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -99,6 +118,7 @@
                 android:src="@drawable/ic_lock" />
 
             <EditText
+                android:id="@+id/editTextRePassword"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -118,6 +138,7 @@
                 android:src="@drawable/ic_phone" />
 
             <EditText
+                android:id="@id/editTextPhoneInput"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -128,34 +149,15 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/buttonCreateAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
-        android:layout_marginTop="380dp"
+        android:layout_marginTop="442dp"
+        android:background="@drawable/edittext_style"
         android:fontFamily="@font/seymour_one"
         android:text="Create Account"
         android:textColor="@color/colorText"
-        android:textSize="20sp"
-        android:background="@drawable/edittext_style"/>
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="121dp"
-        android:text="Or Sign up with"
-        android:textStyle="italic"
-        android:textColor="#000"/>
-
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="65dp"
-        android:background="@color/colorBackground"
-        app:srcCompat="@drawable/googleg_standard_color_18" />
+        android:textSize="20sp" />
 </RelativeLayout>
