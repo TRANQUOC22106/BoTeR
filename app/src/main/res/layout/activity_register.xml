@@ -44,13 +44,13 @@
 
     <LinearLayout
         android:layout_width="320dp"
-        android:layout_height="261dp"
+        android:layout_height="340dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="149dp"
+        android:layout_marginTop="150dp"
         android:background="@drawable/edittext_style3"
-        android:radius="7dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:radius="7dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -63,12 +63,20 @@
                 android:layout_height="40dp"
                 android:src="@drawable/ic_name" />
 
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/name_text_input"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Name"
-                android:id="@+id/editTextNameInput"/>
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/name_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Name"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -80,12 +88,21 @@
                 android:layout_height="40dp"
                 android:src="@drawable/ic_email" />
 
-            <EditText
-                android:id="@+id/editTextMailInput"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/email_text_input"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Mail" />
+                android:layout_height="wrap_content"
+                android:hint="Email">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/email_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -97,15 +114,20 @@
                 android:layout_height="40dp"
                 android:src="@drawable/ic_lock" />
 
-            <EditText
-                android:id="@+id/editTextPasswordInput"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:ems="10"
-                android:hint="Password"
-                android:inputType="textPassword" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/password_text_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -117,15 +139,20 @@
                 android:layout_height="40dp"
                 android:src="@drawable/ic_lock" />
 
-            <EditText
-                android:id="@+id/editTextRePassword"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:ems="10"
-                android:hint="Password"
-                android:inputType="textPassword" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/confirm_password_text_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="VerityPassword">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/confirm_password_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -137,14 +164,19 @@
                 android:layout_height="40dp"
                 android:src="@drawable/ic_phone" />
 
-            <EditText
-                android:id="@id/editTextPhoneInput"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:ems="10"
-                android:hint="Phone Number"
-                android:inputType="phone"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/phone_text_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Phone">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/phone_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
     </LinearLayout>
 
@@ -154,7 +186,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
-        android:layout_marginTop="442dp"
+        android:layout_marginTop="525dp"
         android:background="@drawable/edittext_style"
         android:fontFamily="@font/seymour_one"
         android:text="Create Account"
