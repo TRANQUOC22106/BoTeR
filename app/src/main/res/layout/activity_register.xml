@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context=".Activity.Register">
+    tools:context=".Utils.Register">
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/imageButtonBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -44,7 +44,7 @@
 
     <LinearLayout
         android:layout_width="320dp"
-        android:layout_height="340dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="150dp"
@@ -181,7 +181,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/buttonCreateAccount"
+        android:id="@+id/buttonRegisterA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
