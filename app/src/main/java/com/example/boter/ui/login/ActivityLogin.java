@@ -1,5 +1,6 @@
 package com.example.boter.ui.login;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.boter.Activity.Register;
@@ -24,6 +26,8 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -57,6 +61,7 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
                 .build();
 
         btnForgotPassword = findViewById(R.id.buttonForgotPassword);
+        btnForgotPassword.setOnClickListener(this);
 
         btnRegister = findViewById(R.id.buttonRegister);
         btnRegister.setOnClickListener(this);
@@ -83,7 +88,7 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
                 register();
                 break;
             case R.id.buttonForgotPassword:
-                forgotPassword();
+                forgotPassword(v);
             case R.id.buttonLogin:
                 loginMail();
         }
@@ -124,7 +129,43 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
         );
     }
 
-    private void forgotPassword(){
+    private View forgotPassword(View v){
+        final EditText resetEmail = new EditText(v.getContext());
+        AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(v.getContext());
+        passwordResetDialog.setTitle("Reset Password ?");
+        passwordResetDialog.setMessage("Enter your Email to received link.");
+        passwordResetDialog.setView(resetEmail);
+
+        passwordResetDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //extract the email and send reset link
+                String mail = resetEmail.getText().toString();
+                fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(
+                        new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(ActivityLogin.this, "Reset link sent to your Email", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                ).addOnFailureListener(
+                        new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(ActivityLogin.this, "Error ! Reset link is not sent" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                );
+            }
+        });
+        passwordResetDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //close the dialog
+            }
+        });
+        passwordResetDialog.create().show();
+        return v;
     }
 
     private void signInGoogle() {
