@@ -2,9 +2,12 @@ package com.example.boter.ui.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,11 +23,19 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class ActivityLogin extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
-    Button btnRegister;
-    SignInButton signInButton;
+    Button btnRegister, btnForgotPassword, btnLogin;
+    SignInButton signInButtonGoogle;
+    ProgressBar progressBar;
+    FirebaseAuth fAuth;
+
+    EditText mEmail, mPassword;
 
     GoogleApiClient mGoogleApiClient;
 
@@ -45,12 +56,20 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
+        btnForgotPassword = findViewById(R.id.buttonForgotPassword);
 
         btnRegister = findViewById(R.id.buttonRegister);
         btnRegister.setOnClickListener(this);
 
-        signInButton = findViewById(R.id.signInButton);
-        signInButton.setOnClickListener(this);
+        signInButtonGoogle = findViewById(R.id.signInButton);
+        signInButtonGoogle.setOnClickListener(this);
+
+        fAuth = FirebaseAuth.getInstance();
+        btnLogin = findViewById(R.id.buttonLogin);
+        mEmail = findViewById(R.id.edtMail);
+        mPassword = findViewById(R.id.edtPassword);
+
+        btnLogin.setOnClickListener(this);
 
     }
 
@@ -58,16 +77,57 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.signInButton:
-                signIn();
+                signInGoogle();
                 break;
             case R.id.buttonRegister:
                 register();
                 break;
+            case R.id.buttonForgotPassword:
+                forgotPassword();
+            case R.id.buttonLogin:
+                loginMail();
         }
 
     }
 
-    private void signIn() {
+    private void loginMail() {
+        String email = mEmail.getText().toString().trim();
+        String password = mPassword.getText().toString().trim();
+
+        if (TextUtils.isEmpty(email)){
+            mEmail.setError("Email is Required.");
+            return;
+        }
+        if (TextUtils.isEmpty(password)){
+            mPassword.setError("Password is Required.");
+            return;
+        }
+        if (password.length() < 6){
+            mPassword.setError("Password Must be >= 6 Charactor");
+            return;
+        }
+        //progressBar.getVisibility(View.VISIBLE);
+
+        //Login with firebase
+        fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(
+                new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()){
+                            Toast.makeText(ActivityLogin.this, "Logged in SuccessFully", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        }else {
+                            Toast.makeText(ActivityLogin.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+        );
+    }
+
+    private void forgotPassword(){
+    }
+
+    private void signInGoogle() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
 
         startActivityForResult(signInIntent, RC_SIGN_IN);
