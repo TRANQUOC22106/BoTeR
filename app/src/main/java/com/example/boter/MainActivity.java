@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -19,11 +21,20 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private Button signOutButton;
+    private TextView yourName, yourPhone, yourMail;
+    private FirebaseAuth fAuth;
+    private FirebaseFirestore fStore;
+    private String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +67,25 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadNavHeader(View headerView) {
         signOutButton = headerView.findViewById(R.id.signOutButton);
+        yourName = headerView.findViewById(R.id.display_name);
+        yourMail = headerView.findViewById(R.id.display_email);
+        yourPhone = headerView.findViewById(R.id.display_phone);
+
+        fAuth = FirebaseAuth.getInstance();
+        fStore = FirebaseFirestore.getInstance();
+
+        userId = fAuth.getCurrentUser().getUid();
+
+        DocumentReference documentReference = fStore.collection("usersprofile").document(userId);
+        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                yourPhone.setText(documentSnapshot.getString("phone"));
+                yourName.setText(documentSnapshot.getString("fullname"));
+                yourMail.setText(documentSnapshot.getString("email"));
+            }
+        });
+
         actionListener();
     }
 
