@@ -1,10 +1,14 @@
 package com.example.boter;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -30,11 +34,12 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private Button signOutButton;
+    private Button signOutButton, updateProfile;
     private TextView yourName, yourPhone, yourMail;
     private FirebaseAuth fAuth;
     private FirebaseFirestore fStore;
     private String userId;
+    private ImageView profileImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
         yourName = headerView.findViewById(R.id.display_name);
         yourMail = headerView.findViewById(R.id.display_email);
         yourPhone = headerView.findViewById(R.id.display_phone);
+        profileImage = headerView.findViewById(R.id.display_image);
+        updateProfile = headerView.findViewById(R.id.edit_profile);
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
@@ -100,6 +107,27 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
+        updateProfile.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //open gallery
+                        Intent openGalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        startActivityForResult(openGalleryIntent, 1000);
+                    }
+                }
+        );
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1000){
+            if (resultCode == Activity.RESULT_OK){
+                Uri imageUri = data.getData();
+                profileImage.setImageURI(imageUri);
+            }
+        }
     }
 
     @Override
