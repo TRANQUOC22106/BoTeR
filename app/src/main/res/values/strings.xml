@@ -16,4 +16,27 @@
 
     <string name="mail">Mail</string>
     <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="login">LOGIN</string>
+    <string name="or_sign_up_with">Or Sign up with</string>
+    <string name="don_t_have_an_account">Don\'t have an Account?</string>
+    <string name="create_account">Create Account</string>
+    <string name="create_a_new_account">Create a new account</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+
+    <string name="veritypassword">VerityPassword</string>
+    <string name="phone">Phone</string>
+    <string name="time">日時:</string>
+    <string name="report_guy">報告者:</string>
+    <string name="report_temp">検温結果:</string>
+    <string name="_0">0</string>
+    <string name="userid">UserId :</string>
+    <string name="report_sent">提出</string>
+    <string name="update_profile">Update Profile</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="_2020_05_06">2020/05/06</string>
+    <string name="ukai">鵜飼</string>
+    <string name="_36">36゜</string>
+    <string name="_1">1</string>
 </resources>

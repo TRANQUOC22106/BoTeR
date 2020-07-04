@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context=".Utils.Register">
+    tools:context=".Activity.Register">
 
     <ImageButton
         android:id="@+id/imageButtonBack"
@@ -16,7 +16,8 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
         android:background="@color/colorBackground"
-        app:srcCompat="@drawable/ic_back" />
+        app:srcCompat="@drawable/ic_back"
+        android:contentDescription="@string/app_name" />
 
     <TextView
         android:id="@+id/textView3"
@@ -26,7 +27,7 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="90dp"
         android:fontFamily="@font/seymour_one"
-        android:text="Create Account"
+        android:text="@string/create_account"
         android:textColor="@color/colorText"
         android:textSize="28sp" />
 
@@ -36,7 +37,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
         android:layout_marginTop="122dp"
-        android:text="Create a new account"
+        android:text="@string/create_a_new_account"
         android:textColor="#000"
         android:textSize="18sp"
         android:textStyle="italic"
@@ -61,7 +62,8 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_name" />
+                android:src="@drawable/ic_name"
+                android:contentDescription="@string/app_name" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/name_text_input"
@@ -72,7 +74,7 @@
                     android:id="@+id/name_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="Name"
+                    android:hint="@string/name"
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
@@ -86,13 +88,14 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_email" />
+                android:src="@drawable/ic_email"
+                android:contentDescription="@string/app_name" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/email_text_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email">
+                android:hint="@string/email">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/email_edit_text"
@@ -112,13 +115,14 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_lock" />
+                android:src="@drawable/ic_lock"
+                android:contentDescription="@string/app_name" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/password_text_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password">
+                android:hint="@string/password">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password_edit_text"
@@ -137,13 +141,14 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_lock" />
+                android:src="@drawable/ic_lock"
+                android:contentDescription="@string/app_name" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/confirm_password_text_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="VerityPassword">
+                android:hint="@string/veritypassword">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/confirm_password_edit_text"
@@ -162,13 +167,14 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_phone" />
+                android:src="@drawable/ic_phone"
+                android:contentDescription="@string/app_name" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/phone_text_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Phone">
+                android:hint="@string/phone">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/phone_edit_text"
@@ -189,7 +195,7 @@
         android:layout_marginTop="525dp"
         android:background="@drawable/edittext_style"
         android:fontFamily="@font/seymour_one"
-        android:text="Create Account"
+        android:text="@string/create_account"
         android:textColor="@color/colorText"
         android:textSize="20sp" />
 </RelativeLayout>

@@ -31,14 +31,13 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private Button signOutButton, updateProfile;
     private TextView yourName, yourPhone, yourMail;
-    private FirebaseAuth fAuth;
-    private FirebaseFirestore fStore;
-    private String userId;
     private ImageView profileImage;
 
     @Override
@@ -78,15 +77,16 @@ public class MainActivity extends AppCompatActivity {
         profileImage = headerView.findViewById(R.id.display_image);
         updateProfile = headerView.findViewById(R.id.edit_profile);
 
-        fAuth = FirebaseAuth.getInstance();
-        fStore = FirebaseFirestore.getInstance();
+        FirebaseAuth fAuth = FirebaseAuth.getInstance();
+        FirebaseFirestore fStore = FirebaseFirestore.getInstance();
 
-        userId = fAuth.getCurrentUser().getUid();
+        String userId = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
 
         DocumentReference documentReference = fStore.collection("usersprofile").document(userId);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                assert documentSnapshot != null;
                 yourPhone.setText(documentSnapshot.getString("phone"));
                 yourName.setText(documentSnapshot.getString("fullname"));
                 yourMail.setText(documentSnapshot.getString("email"));
@@ -124,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1000){
             if (resultCode == Activity.RESULT_OK){
+                assert data != null;
                 Uri imageUri = data.getData();
                 profileImage.setImageURI(imageUri);
             }

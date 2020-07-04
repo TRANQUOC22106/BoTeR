@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/edittext_style2"
         android:textSize="@dimen/_20sdp"
-        android:text="日時:"
+        android:text="@string/time"
         android:textColor="@color/black"/>
     <TextView
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/edittext_style2"
         android:textSize="@dimen/_20sdp"
-        android:text="報告者:"
+        android:text="@string/report_guy"
         android:textColor="@color/black"/>
     <EditText
         android:id="@+id/editTextName"
@@ -31,13 +31,15 @@
         android:background="@drawable/edittext_style2"
         android:textSize="@dimen/_20sdp"
         android:textColor="@color/black"
-        android:inputType="textMultiLine"/>
+        android:inputType="textMultiLine"
+        android:importantForAutofill="no"
+        tools:ignore="LabelFor" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/edittext_style2"
         android:textSize="@dimen/_20sdp"
-        android:text="検温結果:"
+        android:text="@string/report_temp"
         android:textColor="@color/black"/>
     <EditText
         android:id="@+id/editTextTemp"
@@ -47,13 +49,15 @@
         android:textSize="@dimen/_20sdp"
         android:textColor="@color/black"
         android:inputType="number"
-        android:text="0"/>
+        android:text="@string/_0"
+        android:importantForAutofill="no"
+        tools:ignore="LabelFor" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/edittext_style2"
         android:textSize="@dimen/_20sdp"
-        android:text="UserId :"
+        android:text="@string/userid"
         android:textColor="@color/black"/>
     <EditText
         android:id="@+id/editTextUserId"
@@ -63,12 +67,14 @@
         android:textSize="@dimen/_20sdp"
         android:textColor="@color/black"
         android:inputType="number"
-        android:text="0"/>
+        android:text="@string/_0"
+        android:importantForAutofill="no"
+        tools:ignore="LabelFor" />
     <Button
         android:id="@+id/buttonUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="提出"
+        android:text="@string/report_sent"
         android:textSize="@dimen/_28sdp"
         android:background="@drawable/edittext_style"
         android:layout_marginStart="150dp"

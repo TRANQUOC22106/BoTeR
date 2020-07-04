@@ -30,7 +30,7 @@
                 android:id="@+id/date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="2020/05/06"
+                android:text="@string/_2020_05_06"
                 android:textColor="#000"
                 android:textSize="18sp" />
 
@@ -43,7 +43,7 @@
                     android:id="@+id/text2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="報告者："
+                    android:text="@string/report_guy"
                     android:textColor="#000"
                     android:textSize="18sp" />
 
@@ -51,7 +51,7 @@
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="鵜飼"
+                    android:text="@string/ukai"
                     android:textColor="#000"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -65,7 +65,7 @@
                     android:id="@+id/text3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="検温結果："
+                    android:text="@string/report_temp"
                     android:textColor="#000"
                     android:textSize="18sp" />
 
@@ -73,7 +73,7 @@
                     android:id="@+id/temp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="36゜"
+                    android:text="@string/_36"
                     android:textColor="#000"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -84,14 +84,14 @@
             android:layout_height="wrap_content"
             android:id="@+id/textViewUserId"
             android:textSize="28sp"
-            android:text="1"/>
+            android:text="@string/_1"/>
         <ImageButton
             android:id="@+id/imageButtonNext"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_centerVertical="true"
             android:layout_weight="1"
-            app:srcCompat="@drawable/ic_action_next" />
+            app:srcCompat="@drawable/ic_action_next"
+            android:contentDescription="@string/app_name" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>
