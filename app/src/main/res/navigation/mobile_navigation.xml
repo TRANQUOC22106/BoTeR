@@ -12,14 +12,8 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.boter.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
-
-    <fragment
         android:id="@+id/nav_send"
         android:name="com.example.boter.ui.User.UserFragment"
-        android:label="@string/menu_send"
+        android:label="@string/menu_users"
         tools:layout="@layout/fragment_user" />
 </navigation>

@@ -10,7 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -21,6 +23,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.boter.ui.login.ActivityLogin;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
@@ -30,6 +34,10 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
     private Button signOutButton, updateProfile;
     private TextView yourName, yourPhone, yourMail;
     private ImageView profileImage;
+    private StorageReference storageReference;
+    private FirebaseAuth fAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +85,17 @@ public class MainActivity extends AppCompatActivity {
         profileImage = headerView.findViewById(R.id.display_image);
         updateProfile = headerView.findViewById(R.id.edit_profile);
 
-        FirebaseAuth fAuth = FirebaseAuth.getInstance();
+        fAuth = FirebaseAuth.getInstance();
         FirebaseFirestore fStore = FirebaseFirestore.getInstance();
+
+        storageReference = FirebaseStorage.getInstance().getReference();
+        StorageReference profileRef = storageReference.child("usersprofile/"+fAuth.getCurrentUser().getUid()+"/profile.jpg");
+        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).into(profileImage);
+            }
+        });
 
         String userId = fAuth.getCurrentUser().getUid();
 
@@ -84,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                //set profile data to firebase
                 assert documentSnapshot != null;
                 yourPhone.setText(documentSnapshot.getString("phone"));
                 yourName.setText(documentSnapshot.getString("fullname"));
@@ -99,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        //Log out
                         FirebaseAuth.getInstance().signOut();
                         startActivity(new Intent(getApplicationContext(), ActivityLogin.class));
                         finish();
@@ -120,13 +141,43 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        //setImage
         if (requestCode == 1000){
             if (resultCode == Activity.RESULT_OK){
                 assert data != null;
                 Uri imageUri = data.getData();
-                profileImage.setImageURI(imageUri);
+//                profileImage.setImageURI(imageUri);
+
+                uploadImageToFirebase(imageUri);
             }
         }
+    }
+
+    private void uploadImageToFirebase(Uri imageUri) {
+        // upload image to firebase storage
+        final StorageReference fileRef = storageReference.child("usersprofile/"+fAuth.getCurrentUser().getUid()+"/profile.jpg");
+        fileRef.putFile(imageUri).addOnSuccessListener(
+                new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        fileRef.getDownloadUrl().addOnSuccessListener(
+                                new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        Picasso.get().load(uri).into(profileImage);
+                                    }
+                                }
+                        );
+                    }
+                }
+        ).addOnFailureListener(
+                new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(MainActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
     }
 
     @Override
