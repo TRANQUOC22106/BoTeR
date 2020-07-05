@@ -31,8 +31,6 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
-import java.util.Objects;
-
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -80,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseAuth fAuth = FirebaseAuth.getInstance();
         FirebaseFirestore fStore = FirebaseFirestore.getInstance();
 
-        String userId = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
+        String userId = fAuth.getCurrentUser().getUid();
 
         DocumentReference documentReference = fStore.collection("usersprofile").document(userId);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
