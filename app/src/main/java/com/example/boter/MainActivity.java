@@ -9,9 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -23,7 +21,6 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.boter.Activity.EditProfile;
 import com.example.boter.ui.login.ActivityLogin;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,14 +31,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private Button signOutButton, updateProfile;
-    private TextView yourName, yourPhone, yourMail;
+    private TextView yourName, yourPhone, yourMail, yourTemp, yourStudentID;
     private ImageView profileImage;
     private StorageReference storageReference;
     private FirebaseAuth fAuth;
@@ -71,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         signOutButton = headerView.findViewById(R.id.signOutButton);
         yourName = headerView.findViewById(R.id.display_name);
         yourMail = headerView.findViewById(R.id.display_email);
+        yourStudentID = headerView.findViewById(R.id.display_studentID);
+        yourTemp = headerView.findViewById(R.id.display_temp);
         yourPhone = headerView.findViewById(R.id.display_phone);
         profileImage = headerView.findViewById(R.id.display_image);
         updateProfile = headerView.findViewById(R.id.edit_profile);
@@ -91,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
         String userId = fAuth.getCurrentUser().getUid();
 
-        final DocumentReference documentReference = fStore.collection("usersprofile").document(userId);
+        final DocumentReference documentReference = fStore.collection("UserList").document(userId);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
@@ -99,6 +97,8 @@ public class MainActivity extends AppCompatActivity {
                 if (documentSnapshot.exists()) {
                     yourPhone.setText(documentSnapshot.getString("phone"));
                     yourMail.setText(documentSnapshot.getString("email"));
+                    yourStudentID.setText(documentSnapshot.getString("studentID"));
+                    yourTemp.setText(documentSnapshot.getString("temp"));
                     yourName.setText(documentSnapshot.getString("fullname"));
                 }else{
                     Log.d("trident", "onEvent: Document don't exists");
@@ -130,6 +130,8 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("fullname", yourName.getText().toString());
                         intent.putExtra("email", yourMail.getText().toString());
                         intent.putExtra("phone", yourPhone.getText().toString());
+                        intent.putExtra("studentID", yourStudentID.getText().toString());
+                        intent.putExtra("temp",yourTemp.getText().toString());
                         startActivity(intent);
 //                        Intent openGalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 //                        startActivityForResult(openGalleryIntent, 1000);

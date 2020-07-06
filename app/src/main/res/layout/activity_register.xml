@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="35dp"
         android:fontFamily="@font/seymour_one"
         android:text="@string/create_account"
         android:textColor="@color/colorText"
@@ -36,19 +36,18 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
-        android:layout_marginTop="122dp"
+        android:layout_marginTop="75dp"
         android:text="@string/create_a_new_account"
         android:textColor="#000"
         android:textSize="18sp"
-        android:textStyle="italic"
-        />
+        android:textStyle="italic" />
 
     <LinearLayout
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="106dp"
         android:background="@drawable/edittext_style3"
         android:orientation="vertical"
         android:radius="7dp">
@@ -62,8 +61,8 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_name"
-                android:contentDescription="@string/app_name" />
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_name" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/name_text_input"
@@ -88,8 +87,8 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_email"
-                android:contentDescription="@string/app_name" />
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_email" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/email_text_input"
@@ -115,8 +114,8 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_lock"
-                android:contentDescription="@string/app_name" />
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_lock" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/password_text_input"
@@ -141,20 +140,20 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_lock"
-                android:contentDescription="@string/app_name" />
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_lock" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/confirm_password_text_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/veritypassword">
+                android:hint="Body Tempurate">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/confirm_password_edit_text"
+                    android:id="@+id/tempEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword" />
+                    android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
@@ -167,8 +166,8 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_phone"
-                android:contentDescription="@string/app_name" />
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_phone" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/phone_text_input"
@@ -184,6 +183,32 @@
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_style2"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_phone" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Student ID">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/studentIdEdt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
     </LinearLayout>
 
     <Button
@@ -192,7 +217,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
-        android:layout_marginTop="525dp"
+        android:layout_marginTop="594dp"
         android:background="@drawable/edittext_style"
         android:fontFamily="@font/seymour_one"
         android:text="@string/create_account"

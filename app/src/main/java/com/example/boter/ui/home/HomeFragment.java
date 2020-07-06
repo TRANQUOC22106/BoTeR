@@ -38,7 +38,7 @@ public class HomeFragment extends Fragment{
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        recyclerView =(RecyclerView) root.findViewById(R.id.recycler_view);
+        recyclerView = root.findViewById(R.id.recycler_view);
 //        サイズを設定
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

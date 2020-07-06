@@ -28,7 +28,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Register extends AppCompatActivity{
-    TextInputEditText mFullname, mPhone, mEmail, mPassword;
+    TextInputEditText mFullname, mPhone, mEmail, mPassword, mTemp, mStudentID;
     Button mRegisterBtn;
     FirebaseAuth fAuth;
     ImageButton mBackBtn;
@@ -47,6 +47,8 @@ public class Register extends AppCompatActivity{
         mPassword = findViewById(R.id.password_edit_text);
         mBackBtn = findViewById(R.id.imageButtonBack);
         mRegisterBtn = findViewById(R.id.buttonRegisterA);
+        mStudentID = findViewById(R.id.studentIdEdt);
+        mTemp = findViewById(R.id.tempEditText);
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
@@ -63,6 +65,8 @@ public class Register extends AppCompatActivity{
                         String password = mPassword.getText().toString().trim();
                         final String fullname = mFullname.getText().toString();
                         final String phone = mPhone.getText().toString();
+                        final String studentID = mStudentID.getText().toString();
+                        final String temp = mTemp.getText().toString();
 
                         if (TextUtils.isEmpty(email)){
                             mEmail.setError("Email is Required.");
@@ -85,11 +89,14 @@ public class Register extends AppCompatActivity{
                                             Toast.makeText(Register.this, "User Created.", Toast.LENGTH_SHORT).show();
                                             //UserIDを自動設定する
                                             userID = fAuth.getCurrentUser().getUid();
-                                            DocumentReference documentReference = fStore.collection("usersprofile").document(userID);
+                                            DocumentReference documentReference = fStore.collection("UserList").document(userID);
                                             Map<String,Object> user = new HashMap<>();
                                             user.put("fullname", fullname);
                                             user.put("email", email);
                                             user.put("phone", phone);
+                                            user.put("studentID", studentID);
+                                            user.put("temp", temp);
+
                                             documentReference.set(user).addOnSuccessListener(
                                                     new OnSuccessListener<Void>() {
                                                         @Override

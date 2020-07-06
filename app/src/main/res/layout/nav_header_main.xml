@@ -55,7 +55,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/phone" />
-
+                <TextView
+                    android:id="@+id/display_temp"
+                    android:maxLines="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Student ID" />
+                <TextView
+                    android:id="@+id/display_studentID"
+                    android:maxLines="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Body Temp" />
 
 
             </LinearLayout>
