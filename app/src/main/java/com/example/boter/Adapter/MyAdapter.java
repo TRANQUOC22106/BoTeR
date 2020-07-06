@@ -1,6 +1,5 @@
 package com.example.boter.Adapter;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,19 +27,21 @@ public class MyAdapter extends FirestoreRecyclerAdapter<Person, MyAdapter.Person
     @Override
     protected void onBindViewHolder(@NonNull final PersonHolder holder, int position, @NonNull Person model) {
         final String idUser = getSnapshots().getSnapshot(holder.getAdapterPosition()).getId();
-        holder.name.setText(model.getName());
-        holder.userId.setText(String.valueOf(model.getUserId()));
-        holder.temp.setText(String.valueOf(model.getTemp()));
-        holder.imageButton.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intentDetail = new Intent(holder.itemView.getContext(), DetailActivity.class);
-                        intentDetail.putExtra("userId", idUser);
-                        holder.itemView.getContext().startActivity(intentDetail);
-                    }
-                }
-        );
+        holder.fullname.setText(model.getFullName());
+        holder.studentID.setText(model.getStudentID());
+        holder.temp.setText(model.getTemp());
+        holder.phone.setText(model.getPhone());
+        holder.email.setText(model.getEmail());
+//        holder.imageButton.setOnClickListener(
+//                new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Intent intentDetail = new Intent(holder.itemView.getContext(), DetailActivity.class);
+//                        intentDetail.putExtra("studentID", idUser);
+//                        holder.itemView.getContext().startActivity(intentDetail);
+//                    }
+//                }
+//        );
     }
 
     @NonNull
@@ -52,17 +53,17 @@ public class MyAdapter extends FirestoreRecyclerAdapter<Person, MyAdapter.Person
     }
 
     public class PersonHolder extends RecyclerView.ViewHolder {
-        TextView name;
-        TextView temp;
-        TextView userId;
+        TextView fullname,temp,studentID,email,phone;
         ImageButton imageButton;
         public PersonHolder(@NonNull View itemView) {
             super(itemView);
 
             imageButton = itemView.findViewById(R.id.imageButtonNext);
-            name = itemView.findViewById(R.id.name);
+            fullname = itemView.findViewById(R.id.name);
             temp = itemView.findViewById(R.id.temp);
-            userId = itemView.findViewById(R.id.textViewUserId);
+            studentID = itemView.findViewById(R.id.usersBody_studentID);
+            email = itemView.findViewById(R.id.usersBody_Mail);
+            phone = itemView.findViewById(R.id.userBodyPhone);
         }
     }
 }

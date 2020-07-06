@@ -54,14 +54,14 @@ public class HomeFragment extends Fragment{
     }
 
     private void showAllUserList() {
-        Query queryShowAll = listUser.orderBy("userId", Query.Direction.DESCENDING);
+        Query queryShowAll = listUser.orderBy("studentID", Query.Direction.DESCENDING);
 
         FirestoreRecyclerOptions<Person> options = new FirestoreRecyclerOptions.Builder<Person>()
                 .setQuery(queryShowAll, Person.class)
                 .build();
 
         adapter = new MyAdapter(options);
-       // recyclerView.removeAllViews();
+//        recyclerView.removeAllViews();
         recyclerView.setAdapter(adapter);
 
 

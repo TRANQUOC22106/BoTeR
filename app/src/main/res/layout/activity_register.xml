@@ -141,7 +141,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_lock" />
+                android:src="@drawable/ic_local_hopital" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/confirm_password_text_input"
@@ -194,7 +194,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_phone" />
+                android:src="@drawable/ic_menu_nature" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -217,7 +217,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
-        android:layout_marginTop="594dp"
+        android:layout_marginTop="529dp"
         android:background="@drawable/edittext_style"
         android:fontFamily="@font/seymour_one"
         android:text="@string/create_account"

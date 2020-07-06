@@ -35,4 +35,6 @@
     <string name="ukai">鵜飼</string>
     <string name="_36">36゜</string>
     <string name="_1">1</string>
+    <string name="StudentID">学生番号：</string>
+    <string name="phoneNumber">番号：</string>
 </resources>
