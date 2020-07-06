@@ -218,9 +218,9 @@
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
         android:layout_marginTop="529dp"
-        android:background="@drawable/edittext_style"
-        android:fontFamily="@font/seymour_one"
         android:text="@string/create_account"
         android:textColor="@color/colorText"
+        android:fontFamily="@font/seymour_one"
+        android:background="@drawable/edittext_style"
         android:textSize="20sp" />
 </RelativeLayout>

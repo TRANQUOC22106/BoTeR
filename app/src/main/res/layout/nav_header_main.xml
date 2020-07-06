@@ -41,32 +41,37 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="@dimen/nav_header_vertical_spacing"
                     android:text="@string/nav_header_title"
+                    android:textColor="@color/black"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
                 <TextView
                     android:id="@+id/display_email"
-                    android:maxLines="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:maxLines="1"
                     android:text="@string/nav_header_subtitle" />
                 <TextView
                     android:id="@+id/display_phone"
-                    android:maxLines="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:maxLines="1"
                     android:text="@string/phone" />
                 <TextView
                     android:id="@+id/display_temp"
-                    android:maxLines="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Student ID" />
+                    android:textColor="@color/black"
+                    android:maxLines="1"
+                    android:text="@string/student_id" />
                 <TextView
                     android:id="@+id/display_studentID"
-                    android:maxLines="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Body Temp" />
+                    android:text="@string/body_tempurate"
+                    android:textColor="@color/black"
+                    android:maxLines="1"/>
 
 
             </LinearLayout>
@@ -78,29 +83,24 @@
 
             <Button
                 android:id="@+id/edit_profile"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:padding="5dp"
                 android:textSize="@dimen/_10ssp"
                 android:textColor="@color/black"
-                android:text="@string/update_profile"
-                android:minHeight="0dp"
-                android:minWidth="0dp"
-                tools:ignore="RelativeOverlap" />
+                android:text="@string/report"
+                android:background="@drawable/edittext_style"/>
             <Button
                 android:id="@+id/signOutButton"
                 android:layout_alignParentEnd="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="left"
                 android:textSize="@dimen/_10ssp"
                 android:text="@string/sign_out"
-                android:minHeight="0dp"
-                android:minWidth="0dp"
+                android:textStyle="bold"
                 android:background="@drawable/edittext_style"
-                tools:ignore="RelativeOverlap,RtlHardcoded" />
+                android:textColor="@color/black"
+                tools:ignore="RelativeOverlap" />
 
         </RelativeLayout>
     </LinearLayout>

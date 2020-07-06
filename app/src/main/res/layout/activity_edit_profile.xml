@@ -3,17 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.EditProfile">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Activity.EditProfile"
+    android:background="@color/colorBackground">
 
     <ImageView
         android:id="@+id/profileImageView"
-        android:layout_width="@dimen/_60sdp"
-        android:layout_height="@dimen/_60sdp"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_80sdp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="148dp"
-        android:layout_marginTop="55dp"
-        android:contentDescription="@string/app_name" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="146dp"
+        android:layout_marginTop="24dp"
+        android:contentDescription="@string/app_name"
+        app:srcCompat="@mipmap/ic_launcher_round" />
 
     <LinearLayout
         android:layout_width="320dp"
@@ -94,7 +98,7 @@
                 android:id="@+id/password_text_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Tempurate">
+                android:hint="@string/body_tempurate">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/profileTemp"
@@ -119,7 +123,7 @@
                 android:id="@+id/confirm_password_text_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Student ID">
+                android:hint="@string/student_id">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/profileStudentID"
@@ -162,7 +166,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="14dp"
-        android:text="Save"
-        android:textSize="26sp" />
+        android:layout_marginBottom="48dp"
+        android:background="@drawable/edittext_style"
+        android:fontFamily="@font/seymour_one"
+        android:text="@string/report"
+        android:textColor="@color/colorText"
+        android:textSize="28sp" />
 </RelativeLayout>

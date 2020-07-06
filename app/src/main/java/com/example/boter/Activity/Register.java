@@ -26,6 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class Register extends AppCompatActivity{
     TextInputEditText mFullname, mPhone, mEmail, mPassword, mTemp, mStudentID;
@@ -61,12 +62,12 @@ public class Register extends AppCompatActivity{
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        final String email = mEmail.getText().toString().trim();
-                        String password = mPassword.getText().toString().trim();
-                        final String fullname = mFullname.getText().toString();
-                        final String phone = mPhone.getText().toString();
-                        final String studentID = mStudentID.getText().toString();
-                        final String temp = mTemp.getText().toString();
+                        final String email = Objects.requireNonNull(mEmail.getText()).toString().trim();
+                        String password = Objects.requireNonNull(mPassword.getText()).toString().trim();
+                        final String fullname = Objects.requireNonNull(mFullname.getText()).toString();
+                        final String phone = Objects.requireNonNull(mPhone.getText()).toString();
+                        final String studentID = Objects.requireNonNull(mStudentID.getText()).toString();
+                        final String temp = Objects.requireNonNull(mTemp.getText()).toString();
 
                         if (TextUtils.isEmpty(email)){
                             mEmail.setError("Email is Required.");

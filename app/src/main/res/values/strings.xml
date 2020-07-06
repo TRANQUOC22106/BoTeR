@@ -36,4 +36,7 @@
     <string name="_1">1</string>
     <string name="StudentID">学生番号：</string>
     <string name="phoneNumber">番号：</string>
+    <string name="report">提出</string>
+    <string name="body_tempurate">Body Tempurate</string>
+    <string name="student_id">Student ID</string>
 </resources>
