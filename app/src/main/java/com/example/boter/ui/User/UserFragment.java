@@ -35,7 +35,7 @@ public class UserFragment extends Fragment {
         sendViewModel =
                 ViewModelProviders.of(this).get(UserViewModel.class);
         View root = inflater.inflate(R.layout.fragment_user, container, false);
-        sendViewModel.getText().observe(this, new Observer<String>() {
+        sendViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
             }

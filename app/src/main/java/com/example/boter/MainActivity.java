@@ -1,10 +1,9 @@
 package com.example.boter;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +21,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.boter.Activity.EditProfile;
 import com.example.boter.ui.login.ActivityLogin;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
         // download image to firebase storage
         storageReference = FirebaseStorage.getInstance().getReference();
+
         StorageReference profileRef = storageReference.child("usersprofile/"+fAuth.getCurrentUser().getUid()+"/profile.jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
@@ -90,15 +91,18 @@ public class MainActivity extends AppCompatActivity {
 
         String userId = fAuth.getCurrentUser().getUid();
 
-        DocumentReference documentReference = fStore.collection("usersprofile").document(userId);
+        final DocumentReference documentReference = fStore.collection("usersprofile").document(userId);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                 //set profile data to firebase
-                assert documentSnapshot != null;
-                yourPhone.setText(documentSnapshot.getString("phone"));
-                yourMail.setText(documentSnapshot.getString("email"));
-                yourName.setText(documentSnapshot.getString("fullname"));
+                if (documentSnapshot.exists()) {
+                    yourPhone.setText(documentSnapshot.getString("phone"));
+                    yourMail.setText(documentSnapshot.getString("email"));
+                    yourName.setText(documentSnapshot.getString("fullname"));
+                }else{
+                    Log.d("trident", "onEvent: Document don't exists");
+                }
             }
         });
 
@@ -122,54 +126,21 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         //open gallery
-                        Intent openGalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                        startActivityForResult(openGalleryIntent, 1000);
+                        Intent intent = new Intent(v.getContext(), EditProfile.class);
+                        intent.putExtra("fullname", yourName.getText().toString());
+                        intent.putExtra("email", yourMail.getText().toString());
+                        intent.putExtra("phone", yourPhone.getText().toString());
+                        startActivity(intent);
+//                        Intent openGalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                        startActivityForResult(openGalleryIntent, 1000);
                     }
                 }
         );
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        //setImage
-        if (requestCode == 1000){
-            if (resultCode == Activity.RESULT_OK){
-                assert data != null;
-                Uri imageUri = data.getData();
-//                profileImage.setImageURI(imageUri);
 
-                uploadImageToFirebase(imageUri);
-            }
-        }
-    }
 
-    private void uploadImageToFirebase(Uri imageUri) {
-        // upload image to firebase storage
-        final StorageReference fileRef = storageReference.child("usersprofile/"+fAuth.getCurrentUser().getUid()+"/profile.jpg");
-        fileRef.putFile(imageUri).addOnSuccessListener(
-                new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        fileRef.getDownloadUrl().addOnSuccessListener(
-                                new OnSuccessListener<Uri>() {
-                                    @Override
-                                    public void onSuccess(Uri uri) {
-                                        Picasso.get().load(uri).into(profileImage);
-                                    }
-                                }
-                        );
-                    }
-                }
-        ).addOnFailureListener(
-                new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(MainActivity.this, "Failed", Toast.LENGTH_SHORT).show();
-                    }
-                }
-        );
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
