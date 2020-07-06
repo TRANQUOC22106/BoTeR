@@ -3,15 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.ActivityLogin"
-    android:background="@color/colorBackground">
+    android:background="@color/colorBackground"
+    tools:context=".ui.login.ActivityLogin">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="192dp"
+        android:contentDescription="@string/app_name"
         android:src="@drawable/background"
-        tools:ignore="MissingConstraints"
-        android:contentDescription="@string/app_name" />
+        tools:ignore="MissingConstraints" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,16 +27,16 @@
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_email"
-            android:contentDescription="@string/app_name" />
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_email" />
 
         <EditText
             android:id="@+id/edtMail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/mail"
-            android:inputType="textEmailAddress"
-            android:importantForAutofill="no" />
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress" />
     </LinearLayout>
 
     <LinearLayout
@@ -53,8 +53,8 @@
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_lock"
-            android:contentDescription="@string/app_name" />
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_lock" />
 
         <EditText
             android:id="@+id/edtPassword"
@@ -63,21 +63,22 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="@string/password"
-            android:inputType="textPassword"
-            android:importantForAutofill="no" />
+            android:importantForAutofill="no"
+            android:inputType="textPassword" />
     </LinearLayout>
+
     <Button
         android:id="@+id/buttonForgotPassword"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="304dp"
         android:layout_marginEnd="46dp"
+        android:background="@color/colorBackground"
         android:text="@string/forgot_password"
         android:textStyle="italic"
-        android:background="@color/colorBackground"
-        style="?android:attr/borderlessButtonStyle"
         tools:ignore="RelativeOverlap" />
 
     <Button
@@ -91,8 +92,7 @@
         android:fontFamily="@font/seymour_one"
         android:text="@string/login"
         android:textColor="@color/colorText"
-        android:textSize="30sp"
-        />
+        android:textSize="30sp" />
 
     <Button
         android:id="@+id/buttonRegister"
@@ -105,24 +105,4 @@
         android:background="@color/colorBackground"
         android:text="@string/don_t_have_an_account"
         android:textStyle="italic" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="121dp"
-        android:text="@string/or_sign_up_with"
-        android:textStyle="italic"
-        android:textColor="#000"/>
-
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/signInButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="65dp"
-        android:background="@color/colorBackground" />
 </RelativeLayout>
