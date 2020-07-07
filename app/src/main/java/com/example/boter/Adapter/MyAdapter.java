@@ -1,5 +1,6 @@
 package com.example.boter.Adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,16 +33,17 @@ public class MyAdapter extends FirestoreRecyclerAdapter<Person, MyAdapter.Person
         holder.temp.setText(model.getTemp());
         holder.phone.setText(model.getPhone());
         holder.email.setText(model.getEmail());
-//        holder.imageButton.setOnClickListener(
-//                new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Intent intentDetail = new Intent(holder.itemView.getContext(), DetailActivity.class);
-//                        intentDetail.putExtra("studentID", idUser);
-//                        holder.itemView.getContext().startActivity(intentDetail);
-//                    }
-//                }
-//        );
+        holder.imageButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intentDetail = new Intent(holder.itemView.getContext(), DetailActivity.class);
+                        intentDetail.putExtra("studentID", idUser);
+                        intentDetail.putExtra("phone", holder.phone.getText().toString());
+                        holder.itemView.getContext().startActivity(intentDetail);
+                    }
+                }
+        );
     }
 
     @NonNull
