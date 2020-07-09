@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,6 +29,7 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
     Button btnRegister, btnForgotPassword, btnLogin;
     FirebaseAuth fAuth;
     EditText mEmail, mPassword;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,7 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
         btnForgotPassword = findViewById(R.id.buttonForgotPassword);
         btnRegister = findViewById(R.id.buttonRegister);
         btnLogin = findViewById(R.id.buttonLogin);
+        progressBar = findViewById(R.id.progressBar);
 
         btnLogin.setOnClickListener(this);
         btnForgotPassword.setOnClickListener(this);
@@ -75,6 +78,7 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
             mPassword.setError("Password Must be >= 6 Charactor");
             return;
         }
+        progressBar.setVisibility(View.VISIBLE);
         //Login with firebase
         fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(
                 new OnCompleteListener<AuthResult>() {

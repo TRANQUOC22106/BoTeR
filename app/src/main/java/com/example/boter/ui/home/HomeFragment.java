@@ -53,8 +53,11 @@ public class HomeFragment extends Fragment{
         return root;
     }
 
+    //if(studentID != 0){
+    // finish()
+    // }
     private void showAllUserList() {
-        Query queryShowAll = listUser.orderBy("studentID", Query.Direction.DESCENDING);
+        Query queryShowAll = listUser.orderBy("temp", Query.Direction.DESCENDING);
 
         FirestoreRecyclerOptions<Person> options = new FirestoreRecyclerOptions.Builder<Person>()
                 .setQuery(queryShowAll, Person.class)

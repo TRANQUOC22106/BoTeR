@@ -14,7 +14,6 @@
     <string name="password">Password</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="login">LOGIN</string>
-    <string name="or_sign_up_with">Or Sign up with</string>
     <string name="don_t_have_an_account">Don\'t have an Account?</string>
     <string name="create_account">Create Account</string>
     <string name="create_a_new_account">Create a new account</string>
@@ -35,8 +34,9 @@
     <string name="_36">36゜</string>
     <string name="_1">1</string>
     <string name="StudentID">学生番号：</string>
-    <string name="phoneNumber">番号：</string>
+    <string name="phoneNumber">☎番号：</string>
     <string name="report">提出</string>
     <string name="body_tempurate">Body Tempurate</string>
     <string name="student_id">Student ID</string>
+    <string name="gjhgj_gmail_com">gjhgj@gmail.com</string>
 </resources>

@@ -38,8 +38,11 @@ public class MyAdapter extends FirestoreRecyclerAdapter<Person, MyAdapter.Person
                     @Override
                     public void onClick(View v) {
                         Intent intentDetail = new Intent(holder.itemView.getContext(), DetailActivity.class);
-                        intentDetail.putExtra("studentID", idUser);
+                        intentDetail.putExtra("studentID", holder.studentID.getText().toString());
                         intentDetail.putExtra("phone", holder.phone.getText().toString());
+                        intentDetail.putExtra("email", holder.email.getText().toString());
+                        intentDetail.putExtra("fullname",holder.fullname.getText().toString());
+                        intentDetail.putExtra("temp",holder.temp.getText().toString());
                         holder.itemView.getContext().startActivity(intentDetail);
                     }
                 }
