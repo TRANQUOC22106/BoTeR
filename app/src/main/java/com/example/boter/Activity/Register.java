@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,6 +35,7 @@ public class Register extends AppCompatActivity{
     FirebaseAuth fAuth;
     ImageButton mBackBtn;
     FirebaseFirestore fStore;
+    ProgressBar progressBar;
 
     String userID;
 
@@ -50,6 +52,7 @@ public class Register extends AppCompatActivity{
         mRegisterBtn = findViewById(R.id.buttonRegisterA);
         mStudentID = findViewById(R.id.studentIdEdt);
         mTemp = findViewById(R.id.tempEditText);
+        progressBar = findViewById(R.id.progressBarReg);
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
@@ -81,6 +84,7 @@ public class Register extends AppCompatActivity{
                             mPassword.setError("Password Must be >= 6 Charactor");
                             return;
                         }
+                        progressBar.setVisibility(View.VISIBLE);
                         //register the user in firebase
                         fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(
                                 new OnCompleteListener<AuthResult>() {
