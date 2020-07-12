@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         // download image to firebase storage
         storageReference = FirebaseStorage.getInstance().getReference();
 
-        StorageReference profileRef = storageReference.child("usersprofile/"+fAuth.getCurrentUser().getUid()+"/profile.jpg");
+        StorageReference profileRef = storageReference.child("usersprofile/"+ fAuth.getCurrentUser().getUid()+"/profile.jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -159,3 +159,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
+//rules_version = '2';
+//service cloud.firestore {
+//  match /databases/{database}/documents {
+//    match /{document=**} {
+//      allow read, write: if true;
+//    }
+//  }
+//}

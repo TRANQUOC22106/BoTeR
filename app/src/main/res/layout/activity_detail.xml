@@ -3,117 +3,151 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Adapter.DetailActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_180sdp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@drawable/img_thermometer"
+        android:contentDescription="@string/app_name" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="202dp"
         android:background="@drawable/edittext_detailstyle"
-        >
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="5">
+            android:weightSum="6">
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:text="@string/phoneNumber"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:textSize="@dimen/_20sdp" />
+
             <TextView
                 android:id="@+id/detail_phone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
+                android:maxLines="1"
                 android:text="@string/phone"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:textSize="@dimen/_20sdp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="5">
+            android:weightSum="6">
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:text="@string/report_guy"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:textSize="@dimen/_20sdp" />
+
             <TextView
                 android:id="@+id/detail_fullname"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
+                android:maxLines="1"
                 android:text="@string/ukai"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:textSize="@dimen/_20sdp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="5">
+            android:weightSum="6">
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:text="@string/report_temp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:textSize="@dimen/_20sdp" />
+
             <TextView
                 android:id="@+id/detail_temp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
+                android:maxLines="1"
                 android:text="@string/_36"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:textSize="@dimen/_20sdp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="5">
+            android:weightSum="7">
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="3"
                 android:text="@string/StudentID"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:textSize="@dimen/_20sdp" />
+
             <TextView
                 android:id="@+id/detail_studentID"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
+                android:maxLines="1"
                 android:text="@string/student_id"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:textSize="@dimen/_20sdp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="5">
+            android:weightSum="6">
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/email"
-                android:textColor="@color/black"/>
+                android:layout_weight="2"
+                android:text="@string/jpEmail"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_20sdp" />
+
             <TextView
                 android:id="@+id/detail_email"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
+                android:maxLines="1"
                 android:text="@string/gjhgj_gmail_com"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:textSize="@dimen/_20sdp" />
         </LinearLayout>
-
-
-
 
 
     </LinearLayout>
@@ -124,9 +158,19 @@
         android:layout_height="80dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="110dp"
-        android:layout_marginBottom="17dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginBottom="95dp"
         android:background="@drawable/ic_local_phone"
         android:contentDescription="@string/app_name" />
+
+    <ImageButton
+        android:id="@+id/imageBtn_Email_Detail"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="208dp"
+        android:layout_marginBottom="95dp"
+        android:background="@drawable/ic_email" />
 
 </RelativeLayout>

@@ -13,9 +13,10 @@ import com.example.boter.R;
 
 public class DetailActivity extends AppCompatActivity {
 
-    private ImageButton helpPhoneCall;
+    private ImageButton helpPhoneCall, detail_imageBtn_email;
     private TextView dPhone, dFullName, dEmail, dStudentID, dTemp;
-//    private LineChart mChart;
+
+    //    private LineChart mChart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +28,7 @@ public class DetailActivity extends AppCompatActivity {
         dStudentID = findViewById(R.id.detail_studentID);
         dTemp = findViewById(R.id.detail_temp);
         helpPhoneCall = findViewById(R.id.btn_phoneCall);
+        detail_imageBtn_email = findViewById(R.id.imageBtn_Email_Detail);
 
         Intent data = getIntent();
         final String phone = data.getStringExtra("phone");
@@ -51,6 +53,16 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
 
-
+        final String[] address = {email};
+        detail_imageBtn_email.setOnClickListener(new TextView.OnClickListener() {
+            public void onClick(View view) {
+                Intent intentEmail = new Intent(Intent.ACTION_SEND);
+                intentEmail.setType("*/*");
+                intentEmail.putExtra(Intent.EXTRA_EMAIL, address);
+                intentEmail.putExtra(Intent.EXTRA_SUBJECT, "タイトルを入力して下さい");
+                intentEmail.putExtra(Intent.EXTRA_TEXT, "メッセージを入力して下さい");
+                startActivity(intentEmail);
+            }
+        });
     }
 }

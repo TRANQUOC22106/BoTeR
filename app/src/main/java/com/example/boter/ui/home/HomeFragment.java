@@ -49,6 +49,10 @@ public class HomeFragment extends Fragment{
 
             }
         });
+//        String a = EditProfile.profileStudentID.getText().toString();
+//        if (a.equals("0")){
+//            recyclerView.setVisibility(View.GONE);
+//        }
         showAllUserList();
         return root;
     }

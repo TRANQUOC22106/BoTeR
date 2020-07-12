@@ -33,7 +33,8 @@ import java.util.Map;
 
 public class EditProfile extends AppCompatActivity {
 
-    EditText profileFullname, profileEmail,profilePhone,profileTemp,profileStudentID;
+    EditText profileFullname, profileEmail,profilePhone,profileTemp;
+    public static EditText profileStudentID;
     Button saveBtn;
     ImageView profileImageView;
     FirebaseAuth fAuth;
