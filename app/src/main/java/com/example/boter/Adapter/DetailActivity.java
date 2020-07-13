@@ -5,16 +5,25 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.boter.R;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 public class DetailActivity extends AppCompatActivity {
 
     private ImageButton helpPhoneCall, detail_imageBtn_email;
     private TextView dPhone, dFullName, dEmail, dStudentID, dTemp;
+    private ImageView profileImage;
+    private StorageReference storageReference;
+    private FirebaseAuth fAuth;
 
     //    private LineChart mChart;
     @Override
@@ -29,6 +38,7 @@ public class DetailActivity extends AppCompatActivity {
         dTemp = findViewById(R.id.detail_temp);
         helpPhoneCall = findViewById(R.id.btn_phoneCall);
         detail_imageBtn_email = findViewById(R.id.imageBtn_Email_Detail);
+        profileImage = findViewById(R.id.imageView_detailNhietKe);
 
         Intent data = getIntent();
         final String phone = data.getStringExtra("phone");
@@ -36,6 +46,7 @@ public class DetailActivity extends AppCompatActivity {
         final String fullname = data.getStringExtra("fullname");
         final String studentID = data.getStringExtra("studentID");
         final String temp = data.getStringExtra("temp");
+        final String idUser = data.getStringExtra("idUser");
 
         dEmail.setText(email);
         dPhone.setText(phone);
@@ -63,6 +74,16 @@ public class DetailActivity extends AppCompatActivity {
                 intentEmail.putExtra(Intent.EXTRA_SUBJECT, "タイトルを入力して下さい");
                 intentEmail.putExtra(Intent.EXTRA_TEXT, "メッセージを入力して下さい");
                 startActivity(intentEmail);
+            }
+        });
+        // download image to firebase storage
+        storageReference = FirebaseStorage.getInstance().getReference();
+        fAuth = FirebaseAuth.getInstance();
+        StorageReference profileRef = storageReference.child("usersprofile/"+ idUser +"/profile.jpg");
+        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).into(profileImage);
             }
         });
     }

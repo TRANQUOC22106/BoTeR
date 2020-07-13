@@ -43,6 +43,7 @@ public class MyAdapter extends FirestoreRecyclerAdapter<Person, MyAdapter.Person
                         intentDetail.putExtra("email", holder.email.getText().toString());
                         intentDetail.putExtra("fullname",holder.fullname.getText().toString());
                         intentDetail.putExtra("temp",holder.temp.getText().toString());
+                        intentDetail.putExtra("idUser", idUser);
                         holder.itemView.getContext().startActivity(intentDetail);
                     }
                 }
