@@ -37,6 +37,8 @@ public class EditProfile extends AppCompatActivity {
     public static EditText profileStudentID;
     Button saveBtn;
     ImageView profileImageView;
+
+    //Firebaseを呼び出す
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     FirebaseUser user;
@@ -48,6 +50,7 @@ public class EditProfile extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile);
 
         Intent data = getIntent();
+        //MainActivityからデータをもらう
         String fullname = data.getStringExtra("fullname");
         String email = data.getStringExtra("email");
         String phone = data.getStringExtra("phone");
@@ -62,12 +65,16 @@ public class EditProfile extends AppCompatActivity {
         profileImageView = findViewById(R.id.profileImageView);
         saveBtn = findViewById(R.id.profileSaveBtn);
 
+        //firebaseのAuthとFirestoreをインスタンスする
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
         user = fAuth.getCurrentUser();
         storageReference = FirebaseStorage.getInstance().getReference();
 
+
+        //今選択しているUserのプロフィールの写真をとるためのメソッド
         StorageReference profileRef = storageReference.child("usersprofile/"+fAuth.getCurrentUser().getUid()+"/profile.jpg");
+
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -77,6 +84,7 @@ public class EditProfile extends AppCompatActivity {
         profileImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //open gallary
                 Intent openGalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(openGalleryIntent, 1000);
             }
@@ -84,6 +92,7 @@ public class EditProfile extends AppCompatActivity {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //FirebaseのデータベースをUpdateする、空がある場合、returnする。
                 if (profileFullname.getText().toString().isEmpty() || profileEmail.getText().toString().isEmpty() ||
                         profilePhone.getText().toString().isEmpty() || profileStudentID.getText().toString().isEmpty() ||
                         profileTemp.getText().toString().isEmpty()){
@@ -122,6 +131,7 @@ public class EditProfile extends AppCompatActivity {
             }
         });
 
+        //Sets the text that this EditView is to display
         profilePhone.setText(phone);
         profileFullname.setText(fullname);
         profileEmail.setText(email);

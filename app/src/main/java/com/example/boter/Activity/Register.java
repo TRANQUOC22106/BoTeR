@@ -72,6 +72,7 @@ public class Register extends AppCompatActivity{
                         final String studentID = Objects.requireNonNull(mStudentID.getText()).toString();
                         final String temp = Objects.requireNonNull(mTemp.getText()).toString();
 
+                        //空にならないためのメソッドです
                         if (TextUtils.isEmpty(email)){
                             mEmail.setError("Email is Required.");
                             return;
@@ -84,6 +85,7 @@ public class Register extends AppCompatActivity{
                             mPassword.setError("Password Must be >= 6 Charactor");
                             return;
                         }
+                        //読み込んでいる間、ぐるぐるする
                         progressBar.setVisibility(View.VISIBLE);
                         //register the user in firebase
                         fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(
