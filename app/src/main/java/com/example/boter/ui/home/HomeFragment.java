@@ -17,9 +17,13 @@ import com.example.boter.Adapter.MyAdapter;
 import com.example.boter.Adapter.Person;
 import com.example.boter.R;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+
+import java.util.Objects;
 
 public class HomeFragment extends Fragment{
 
@@ -29,6 +33,8 @@ public class HomeFragment extends Fragment{
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference listUser = db.collection("UserList");
     private MyAdapter adapter;
+    private FirebaseAuth fAuth = FirebaseAuth.getInstance();
+    private FirebaseUser user = fAuth.getCurrentUser();
 
 
 
@@ -68,9 +74,9 @@ public class HomeFragment extends Fragment{
                 .build();
 
         adapter = new MyAdapter(options);
-//        recyclerView.removeAllViews();
-        recyclerView.setAdapter(adapter);
-
+        if (Objects.equals(user.getEmail(), "trident@gmail.com")) {
+            recyclerView.setAdapter(adapter);
+        }
 
     }
 

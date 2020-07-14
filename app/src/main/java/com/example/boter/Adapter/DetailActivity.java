@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.boter.R;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
@@ -23,9 +22,7 @@ public class DetailActivity extends AppCompatActivity {
     private TextView dPhone, dFullName, dEmail, dStudentID, dTemp;
     private ImageView profileImage;
     private StorageReference storageReference;
-    private FirebaseAuth fAuth;
 
-    //    private LineChart mChart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +75,6 @@ public class DetailActivity extends AppCompatActivity {
         });
         // download image to firebase storage
         storageReference = FirebaseStorage.getInstance().getReference();
-        fAuth = FirebaseAuth.getInstance();
         StorageReference profileRef = storageReference.child("usersprofile/"+ idUser +"/profile.jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
