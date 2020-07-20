@@ -46,7 +46,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Name: "
+                        android:text="@string/name2"
                         android:textColor="@color/black" />
 
                     <TextView
@@ -75,7 +75,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Phone: "
+                        android:text="@string/phone2"
                         android:textColor="@color/black" />
 
                     <TextView
@@ -93,9 +93,9 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="StudentID: "
+                        android:layout_width="44dp"
+                        android:layout_height="match_parent"
+                        android:text="@string/kenon"
                         android:textColor="@color/black" />
 
                     <TextView
@@ -103,7 +103,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:maxLines="1"
-                        android:text="@string/student_id"
+                        android:text="@string/body_tempurate"
                         android:textColor="@color/black" />
                 </LinearLayout>
 
@@ -114,8 +114,8 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="検温: "
+                        android:layout_height="match_parent"
+                        android:text="@string/studentid"
                         android:textColor="@color/black" />
 
                     <TextView
@@ -123,7 +123,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:maxLines="1"
-                        android:text="@string/body_tempurate"
+                        android:text="@string/student_id"
+
                         android:textColor="@color/black" />
                 </LinearLayout>
 
