@@ -44,7 +44,7 @@ public class EditProfile extends AppCompatActivity {
     public static EditText profileStudentID;
     Button saveBtn;
     ImageView profileImageView;
-    TextView editProfile_date;
+    TextView profileDate;
 
     //Firebaseを呼び出す
     FirebaseAuth fAuth;
@@ -53,7 +53,7 @@ public class EditProfile extends AppCompatActivity {
     StorageReference storageReference;
 
     private Uri cameraUri;
-    private final static String TAG = "dustroid003";
+    private final static String TAG = "boter";
     private File cameraFile;
 
     @Override
@@ -76,7 +76,7 @@ public class EditProfile extends AppCompatActivity {
         profileStudentID = findViewById(R.id.profileStudentID);
         profileImageView = findViewById(R.id.profileImageView);
         saveBtn = findViewById(R.id.profileSaveBtn);
-        editProfile_date = findViewById(R.id.editProfile_date);
+        profileDate = findViewById(R.id.editProfile_date);
 
         //firebaseのAuthとFirestoreをインスタンスする
         fAuth = FirebaseAuth.getInstance();
@@ -100,7 +100,7 @@ public class EditProfile extends AppCompatActivity {
                 File cFolder = getExternalFilesDir(Environment.DIRECTORY_DCIM);
                 String fileDate = new SimpleDateFormat("yyyy年MM月dd日のHH分mm秒", Locale.US).format(new Date());
                 String fileName = String.format(TAG + "_%s.jpg", fileDate);
-                editProfile_date.setText(fileDate);
+                profileDate.setText(fileDate);
 //
                 cameraFile = new File(cFolder, fileName);
                 cameraUri = FileProvider.getUriForFile(EditProfile.this,
@@ -117,7 +117,7 @@ public class EditProfile extends AppCompatActivity {
                 //FirebaseのデータベースをUpdateする、空がある場合、returnする。
                 if (profileFullname.getText().toString().isEmpty() || profileEmail.getText().toString().isEmpty() ||
                         profilePhone.getText().toString().isEmpty() || profileStudentID.getText().toString().isEmpty() ||
-                        profileTemp.getText().toString().isEmpty()){
+                        profileTemp.getText().toString().isEmpty() || profileDate.getText().toString().equals("Date")){
                     Toast.makeText(EditProfile.this, "One or Many fields are empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -133,6 +133,7 @@ public class EditProfile extends AppCompatActivity {
                         edited.put("phone", profilePhone.getText().toString());
                         edited.put("temp", profileTemp.getText().toString());
                         edited.put("studentID", profileStudentID.getText().toString());
+                        edited.put("date", profileDate.getText().toString());
                         docRef.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
