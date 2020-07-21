@@ -30,7 +30,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public class Register extends AppCompatActivity{
-    TextInputEditText mFullname, mPhone, mEmail, mPassword, mTemp, mStudentID;
+    TextInputEditText mFullname, mPhone, mEmail, mPassword, mStudentID;
     Button mRegisterBtn;
     FirebaseAuth fAuth;
     ImageButton mBackBtn;
@@ -51,7 +51,6 @@ public class Register extends AppCompatActivity{
         mBackBtn = findViewById(R.id.imageButtonBack);
         mRegisterBtn = findViewById(R.id.buttonRegisterA);
         mStudentID = findViewById(R.id.studentIdEdt);
-        mTemp = findViewById(R.id.tempEditText);
         progressBar = findViewById(R.id.progressBarReg);
 
         fAuth = FirebaseAuth.getInstance();
@@ -70,7 +69,6 @@ public class Register extends AppCompatActivity{
                         final String fullname = Objects.requireNonNull(mFullname.getText()).toString();
                         final String phone = Objects.requireNonNull(mPhone.getText()).toString();
                         final String studentID = Objects.requireNonNull(mStudentID.getText()).toString();
-                        final String temp = Objects.requireNonNull(mTemp.getText()).toString();
 
                         //空にならないためのメソッドです
                         if (TextUtils.isEmpty(email)){
@@ -102,7 +100,6 @@ public class Register extends AppCompatActivity{
                                             user.put("email", email);
                                             user.put("phone", phone);
                                             user.put("studentID", studentID);
-                                            user.put("temp", temp);
 
                                             documentReference.set(user).addOnSuccessListener(
                                                     new OnSuccessListener<Void>() {
