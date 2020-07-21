@@ -1,9 +1,9 @@
 package com.example.boter.Activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +14,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
+import com.example.boter.BuildConfig;
 import com.example.boter.MainActivity;
 import com.example.boter.R;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -28,7 +30,11 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class EditProfile extends AppCompatActivity {
@@ -43,6 +49,10 @@ public class EditProfile extends AppCompatActivity {
     FirebaseFirestore fStore;
     FirebaseUser user;
     StorageReference storageReference;
+
+    private Uri cameraUri;
+    private final static String TAG = "dustroid003";
+    private File cameraFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,9 +94,17 @@ public class EditProfile extends AppCompatActivity {
         profileImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //open gallary
-                Intent openGalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(openGalleryIntent, 1000);
+                File cFolder = getExternalFilesDir(Environment.DIRECTORY_DCIM);
+                String fileDate = new SimpleDateFormat("yyyymmddHHmmss", Locale.US).format(new Date());
+                String fileName = String.format(TAG + "_%s.jpg", fileDate);
+//
+                cameraFile = new File(cFolder, fileName);
+                cameraUri = FileProvider.getUriForFile(EditProfile.this,
+                        BuildConfig.APPLICATION_ID + ".provider",cameraFile);
+
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, cameraUri);
+                startActivityForResult(intent, 1000);
             }
         });
         saveBtn.setOnClickListener(new View.OnClickListener() {
@@ -143,13 +161,15 @@ public class EditProfile extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         //setImage
         if (requestCode == 1000){
-            if (resultCode == Activity.RESULT_OK){
-                assert data != null;
-                Uri imageUri = data.getData();
-//                profileImage.setImageURI(imageUri);
-
-                uploadImageToFirebase(imageUri);
+            if (cameraUri == null){
+                return;
+//                assert data != null;
+//                Uri imageUri = data.getData();
+////                profileImage.setImageURI(imageUri);
+//
+//                uploadImageToFirebase(imageUri);
             }
+            uploadImageToFirebase(cameraUri);
         }
     }
     private void uploadImageToFirebase(Uri imageUri) {
