@@ -98,7 +98,7 @@ public class EditProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 File cFolder = getExternalFilesDir(Environment.DIRECTORY_DCIM);
-                String fileDate = new SimpleDateFormat("yyyy年MM月dd日のHH分mm秒", Locale.US).format(new Date());
+                String fileDate = new SimpleDateFormat("yyyy.MM.dd HH:mm", Locale.US).format(new Date());
                 String fileName = String.format(TAG + "_%s.jpg", fileDate);
                 profileDate.setText(fileDate);
 //
@@ -142,8 +142,6 @@ public class EditProfile extends AppCompatActivity {
                                 finish();
                             }
                         });
-
-                        Toast.makeText(EditProfile.this, "Email is changed", Toast.LENGTH_SHORT).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override

@@ -19,7 +19,7 @@ import com.squareup.picasso.Picasso;
 public class DetailActivity extends AppCompatActivity {
 
     private ImageButton helpPhoneCall, detail_imageBtn_email;
-    private TextView dPhone, dFullName, dEmail, dStudentID, dTemp;
+    private TextView dPhone, dFullName, dEmail, dStudentID, dTemp, dDate;
     private ImageView profileImage;
     private StorageReference storageReference;
 
@@ -36,6 +36,7 @@ public class DetailActivity extends AppCompatActivity {
         helpPhoneCall = findViewById(R.id.btn_phoneCall);
         detail_imageBtn_email = findViewById(R.id.imageBtn_Email_Detail);
         profileImage = findViewById(R.id.imageView_detailNhietKe);
+        dDate = findViewById(R.id.detail_date);
 
         Intent data = getIntent();
         final String phone = data.getStringExtra("phone");
@@ -44,12 +45,14 @@ public class DetailActivity extends AppCompatActivity {
         final String studentID = data.getStringExtra("studentID");
         final String temp = data.getStringExtra("temp");
         final String idUser = data.getStringExtra("idUser");
+        final String date = data.getStringExtra("date");
 
         dEmail.setText(email);
         dPhone.setText(phone);
         dFullName.setText(fullname);
         dStudentID.setText(studentID);
         dTemp.setText(temp);
+        dDate.setText(date);
 
         helpPhoneCall.setOnClickListener(new View.OnClickListener() {
             @Override

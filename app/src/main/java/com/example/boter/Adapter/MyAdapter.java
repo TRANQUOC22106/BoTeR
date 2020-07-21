@@ -31,6 +31,7 @@ public class MyAdapter extends FirestoreRecyclerAdapter<Person, MyAdapter.Person
         holder.fullname.setText(model.getFullName());
         holder.studentID.setText(model.getStudentID());
         holder.temp.setText(model.getTemp());
+        holder.date.setText(model.getDate());
         holder.imageButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -42,6 +43,7 @@ public class MyAdapter extends FirestoreRecyclerAdapter<Person, MyAdapter.Person
                         intentDetail.putExtra("fullname",holder.fullname.getText().toString());
                         intentDetail.putExtra("temp",holder.temp.getText().toString());
                         intentDetail.putExtra("idUser", idUser);
+                        intentDetail.putExtra("date", holder.date.getText().toString());
                         holder.itemView.getContext().startActivity(intentDetail);
                     }
                 }
@@ -57,7 +59,7 @@ public class MyAdapter extends FirestoreRecyclerAdapter<Person, MyAdapter.Person
     }
 
     public class PersonHolder extends RecyclerView.ViewHolder {
-        TextView fullname,temp,studentID,phone;
+        TextView fullname,temp,studentID,date;
         ImageButton imageButton;
         public PersonHolder(@NonNull View itemView) {
             super(itemView);
@@ -66,7 +68,7 @@ public class MyAdapter extends FirestoreRecyclerAdapter<Person, MyAdapter.Person
             fullname = itemView.findViewById(R.id.name);
             temp = itemView.findViewById(R.id.temp);
             studentID = itemView.findViewById(R.id.usersBody_studentID);
-            phone = itemView.findViewById(R.id.userBodyPhone);
+            date = itemView.findViewById(R.id.userBodyDate);
         }
     }
 }

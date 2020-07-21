@@ -1,15 +1,20 @@
 package com.example.boter.Adapter;
 
 public class Person {
-    private String fullname,email,temp,studentID,phone;
+    private String fullname,email,temp,studentID,phone,date;
 
     public Person(){}
-    public Person(String email, String fullname, String phone,String studentID, String temp){
+    public Person(String email, String fullname, String phone,String studentID, String temp, String date){
         this.fullname = fullname;
         this.temp = temp;
         this.studentID = studentID;
         this.phone = phone;
         this.email = email;
+        this.date = date;
+    }
+
+    public String getDate() {
+        return date;
     }
 
     public String getEmail() {
@@ -31,4 +36,5 @@ public class Person {
     public String getStudentID() {
         return studentID;
     }
+
 }
