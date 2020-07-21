@@ -26,21 +26,19 @@ public class MyAdapter extends FirestoreRecyclerAdapter<Person, MyAdapter.Person
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull final PersonHolder holder, int position, @NonNull Person model) {
+    protected void onBindViewHolder(@NonNull final PersonHolder holder, int position, @NonNull final Person model) {
         final String idUser = getSnapshots().getSnapshot(holder.getAdapterPosition()).getId();
         holder.fullname.setText(model.getFullName());
         holder.studentID.setText(model.getStudentID());
         holder.temp.setText(model.getTemp());
-        holder.phone.setText(model.getPhone());
-        holder.email.setText(model.getEmail());
         holder.imageButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intentDetail = new Intent(holder.itemView.getContext(), DetailActivity.class);
                         intentDetail.putExtra("studentID", holder.studentID.getText().toString());
-                        intentDetail.putExtra("phone", holder.phone.getText().toString());
-                        intentDetail.putExtra("email", holder.email.getText().toString());
+                        intentDetail.putExtra("phone", model.getPhone());
+                        intentDetail.putExtra("email", model.getEmail());
                         intentDetail.putExtra("fullname",holder.fullname.getText().toString());
                         intentDetail.putExtra("temp",holder.temp.getText().toString());
                         intentDetail.putExtra("idUser", idUser);
@@ -59,7 +57,7 @@ public class MyAdapter extends FirestoreRecyclerAdapter<Person, MyAdapter.Person
     }
 
     public class PersonHolder extends RecyclerView.ViewHolder {
-        TextView fullname,temp,studentID,email,phone;
+        TextView fullname,temp,studentID,phone;
         ImageButton imageButton;
         public PersonHolder(@NonNull View itemView) {
             super(itemView);
@@ -68,7 +66,6 @@ public class MyAdapter extends FirestoreRecyclerAdapter<Person, MyAdapter.Person
             fullname = itemView.findViewById(R.id.name);
             temp = itemView.findViewById(R.id.temp);
             studentID = itemView.findViewById(R.id.usersBody_studentID);
-            email = itemView.findViewById(R.id.usersBody_Mail);
             phone = itemView.findViewById(R.id.userBodyPhone);
         }
     }
