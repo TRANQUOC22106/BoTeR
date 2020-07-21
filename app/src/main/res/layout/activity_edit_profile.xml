@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Activity.EditProfile"
-    android:background="@color/colorBackground">
+    android:background="@color/colorBackground"
+    tools:context=".Activity.EditProfile">
 
     <ImageView
         android:id="@+id/profileImageView"
@@ -14,17 +14,17 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="146dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="3dp"
         android:contentDescription="@string/app_name"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        app:srcCompat="@drawable/ic_local_see" />
 
     <LinearLayout
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="100dp"
         android:background="@drawable/edittext_style3"
         android:orientation="vertical"
         android:radius="7dp">
@@ -38,8 +38,30 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_name"
-                android:contentDescription="@string/app_name" />
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_date_range" />
+
+            <TextView
+                android:id="@+id/editProfile_date"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/date"
+                android:textColor="@color/black"
+                android:maxLines="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_style2"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_name" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/name_text_input"
@@ -64,8 +86,8 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_email"
-                android:contentDescription="@string/app_name" />
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_email" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/email_text_input"
@@ -91,8 +113,8 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_lock"
-                android:contentDescription="@string/app_name" />
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_lock" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/password_text_input"
@@ -116,8 +138,8 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_lock"
-                android:contentDescription="@string/app_name" />
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_lock" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/confirm_password_text_input"
@@ -128,7 +150,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/profileStudentID"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
@@ -141,8 +163,8 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_phone"
-                android:contentDescription="@string/app_name" />
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_phone" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/phone_text_input"
@@ -172,4 +194,6 @@
         android:text="@string/report"
         android:textColor="@color/colorText"
         android:textSize="28sp" />
+
+
 </RelativeLayout>

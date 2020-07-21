@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -43,6 +44,7 @@ public class EditProfile extends AppCompatActivity {
     public static EditText profileStudentID;
     Button saveBtn;
     ImageView profileImageView;
+    TextView editProfile_date;
 
     //Firebaseを呼び出す
     FirebaseAuth fAuth;
@@ -74,6 +76,7 @@ public class EditProfile extends AppCompatActivity {
         profileStudentID = findViewById(R.id.profileStudentID);
         profileImageView = findViewById(R.id.profileImageView);
         saveBtn = findViewById(R.id.profileSaveBtn);
+        editProfile_date = findViewById(R.id.editProfile_date);
 
         //firebaseのAuthとFirestoreをインスタンスする
         fAuth = FirebaseAuth.getInstance();
@@ -95,8 +98,9 @@ public class EditProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 File cFolder = getExternalFilesDir(Environment.DIRECTORY_DCIM);
-                String fileDate = new SimpleDateFormat("yyyymmddHHmmss", Locale.US).format(new Date());
+                String fileDate = new SimpleDateFormat("yyyy年MM月dd日のHH分mm秒", Locale.US).format(new Date());
                 String fileName = String.format(TAG + "_%s.jpg", fileDate);
+                editProfile_date.setText(fileDate);
 //
                 cameraFile = new File(cFolder, fileName);
                 cameraUri = FileProvider.getUriForFile(EditProfile.this,
