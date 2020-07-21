@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //open gallery
+                        //データを持って、EditProfile.classに移動する
                         Intent intent = new Intent(v.getContext(), EditProfile.class);
                         intent.putExtra("fullname", yourName.getText().toString());
                         intent.putExtra("email", yourMail.getText().toString());
@@ -133,8 +133,6 @@ public class MainActivity extends AppCompatActivity {
                         intent.putExtra("studentID", yourStudentID.getText().toString());
                         intent.putExtra("temp",yourTemp.getText().toString());
                         startActivity(intent);
-//                        Intent openGalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//                        startActivityForResult(openGalleryIntent, 1000);
                     }
                 }
         );

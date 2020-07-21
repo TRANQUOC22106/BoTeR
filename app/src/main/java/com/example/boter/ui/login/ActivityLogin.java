@@ -66,6 +66,7 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
         String email = mEmail.getText().toString().trim();
         String password = mPassword.getText().toString().trim();
 
+        //空があれば、setErrorにする
         if (TextUtils.isEmpty(email)) {
             mEmail.setError("Email is Required.");
             return;
@@ -78,6 +79,7 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
             mPassword.setError("Password Must be >= 6 Charactor");
             return;
         }
+        //grogressBarをぐるぐるする
         progressBar.setVisibility(View.VISIBLE);
         //Login with firebase
         fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(

@@ -205,6 +205,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="23dp"
-        android:layout_marginTop="531dp"
+        android:layout_marginTop="458dp"
         android:visibility="invisible" />
 </RelativeLayout>

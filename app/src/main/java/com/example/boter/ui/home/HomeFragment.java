@@ -55,25 +55,21 @@ public class HomeFragment extends Fragment{
 
             }
         });
-//        String a = EditProfile.profileStudentID.getText().toString();
-//        if (a.equals("0")){
-//            recyclerView.setVisibility(View.GONE);
-//        }
         showAllUserList();
         return root;
     }
 
-    //if(studentID != 0){
-    // finish()
-    // }
     private void showAllUserList() {
         Query queryShowAll = listUser.orderBy("temp", Query.Direction.DESCENDING);
 
+        //データをFirestoreから呼び出して、Person.classに入れる
         FirestoreRecyclerOptions<Person> options = new FirestoreRecyclerOptions.Builder<Person>()
                 .setQuery(queryShowAll, Person.class)
                 .build();
 
         adapter = new MyAdapter(options);
+
+        //情報を見えるメールを設定する
         if (Objects.equals(user.getEmail(), "trident@gmail.com")) {
             recyclerView.setAdapter(adapter);
         }
@@ -82,6 +78,7 @@ public class HomeFragment extends Fragment{
 
     @Override
     public void onStart() {
+        //adapterをスタートする
         adapter.startListening();
         super.onStart();
     }
